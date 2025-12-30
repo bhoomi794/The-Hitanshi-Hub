@@ -1,0 +1,306 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hitanshi Hub - Girls & Ladies Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        /* Global Styles */
+        body { font-family: 'Noto Sans', sans-serif; margin: 0; padding: 0; background-color: #FFF5F5; color: #333; line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Dancing Script', cursive; color: #D4AF37; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* Header & Nav */
+        header { background: linear-gradient(45deg, #FFB6C1, #FFD700); color: white; padding: 10px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: bold; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.2em; }
+        .cart-count { background: red; color: white; border-radius: 50%; padding: 2px 6px; position: absolute; top: -10px; right: -15px; font-size: 0.7em; }
+        
+        /* Hamburger Menu */
+        .hamburger { display: none; font-size: 1.5em; cursor: pointer; }
+        .mobile-menu { display: none; flex-direction: column; background: #FFB6C1; width: 100%; position: absolute; top: 100%; left: 0; }
+        .mobile-menu a { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); text-align: center; }
+        .mobile-menu.show { display: flex; }
+
+        /* Hero */
+        .hero { background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1602751584412-7000ad4cd39e?auto=format&fit=crop&w=1200&q=80') center/cover; height: 350px; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        .hero h1 { font-size: 3.5em; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+        /* Products Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
+        .product-card { background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; text-align: center; padding: 15px; transition: 0.3s; border: 1px solid #eee; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; }
+        .product-card h3 { font-family: 'Noto Sans', sans-serif; font-size: 1.2em; margin: 10px 0; color: #444; }
+        .price { font-weight: bold; color: #e91e63; font-size: 1.1em; }
+        .btn-group { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+        button { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .btn-add { background: #FFD700; color: #333; }
+        .btn-view { background: #f0f0f0; color: #666; }
+
+        /* Cart Sidebar */
+        .cart-sidebar { position: fixed; top: 0; right: -350px; width: 320px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 1000; transition: 0.4s; padding: 20px; display: flex; flex-direction: column; }
+        .cart-sidebar.open { right: 0; }
+        .cart-items-list { flex-grow: 1; overflow-y: auto; margin-top: 20px; }
+        .cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .payment-options { margin-top: 20px; border-top: 2px solid #eee; padding-top: 20px; }
+        .payment-options button { width: 100%; margin-bottom: 10px; padding: 12px; }
+
+        /* Admin Section */
+        .admin-panel { background: #fff; padding: 30px; border-radius: 10px; margin-top: 50px; border: 1px dashed #FFB6C1; }
+        .admin-content input, .admin-content textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+
+        /* WhatsApp Button */
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:2000; justify-content:center; align-items:center; }
+        .modal-content { background:white; padding:30px; border-radius:15px; max-width:500px; width:90%; position:relative; }
+        .close-modal { position:absolute; top:10px; right:20px; font-size:30px; cursor:pointer; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">The Hitanshi Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#admin-section">Admin</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#home" onclick="toggleMobileMenu()">Home</a>
+            <a href="#shop" onclick="toggleMobileMenu()">Shop</a>
+            <a href="#admin-section" onclick="toggleMobileMenu()">Admin</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div>
+            <h1>Elegant Collection</h1>
+            <p style="font-size: 1.2em;">Traditional touch for the modern woman</p>
+        </div>
+    </section>
+
+    <section id="shop" class="container">
+        <h2 style="text-align:center; font-size: 2.5em;">Our Collection</h2>
+        <div class="grid" id="product-grid">
+            </div>
+    </section>
+
+    <section id="admin-section" class="container">
+        <div class="admin-panel">
+            <h2><i class="fas fa-lock"></i> Store Management</h2>
+            <div id="admin-login">
+                <input type="password" id="admin-pass" placeholder="Enter Admin Password (admin123)">
+                <button class="btn-add" onclick="loginAdmin()">Login to Add Products</button>
+            </div>
+            <div id="admin-content" style="display: none;" class="admin-content">
+                <h3>Add New Product</h3>
+                <input type="text" id="p-name" placeholder="Product Name (e.g. Designer Bangle)">
+                <input type="number" id="p-price" placeholder="Price (in ₹)">
+                <input type="text" id="p-image" placeholder="Image URL (Unsplash link or direct link)">
+                <textarea id="p-desc" placeholder="Product Description"></textarea>
+                <button class="btn-add" style="width: 100%;" onclick="addNewProduct()">Save Product to Shop</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3>Your Shopping Bag</h3>
+            <span style="cursor: pointer; font-size: 1.5em;" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items-list" id="cart-items-list">
+            </div>
+        <div class="payment-options">
+            <h4 id="total-price">Total: ₹0</h4>
+            <button style="background: #25D366; color: white;" onclick="payWithCOD()">Order via WhatsApp (COD)</button>
+            <button style="background: #3399cc; color: white;" onclick="payWithRazorpay()">Online Payment (Razorpay)</button>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <img id="m-img" src="" style="width: 100%; border-radius: 10px;">
+            <h2 id="m-title" style="margin: 15px 0 5px 0;"></h2>
+            <p id="m-desc" style="color: #666;"></p>
+            <h3 id="m-price" style="color: #e91e63;"></h3>
+            <button class="btn-add" style="width: 100%; padding: 15px;" onclick="addCurrentToCart()">Add to Bag</button>
+        </div>
+    </div>
+
+    <a href="https://wa.me/917067711381?text=Hi, I want to inquire about your products." class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer style="background: #333; color: white; text-align: center; padding: 40px 0; margin-top: 50px;">
+        <p>&copy; 2025 The Hitanshi Hub. Handcrafted with Love.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let currentModalProduct = null;
+        
+        // Initial Products
+        let products = JSON.parse(localStorage.getItem('hh_products')) || [
+            { id: 1, name: 'Traditional Gold Bangles', price: 1299, image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80', desc: 'Beautifully crafted traditional bangles for weddings.' },
+            { id: 2, name: 'Silk Floral Saree', price: 3499, image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=400&q=80', desc: 'Pure silk saree with elegant floral embroidery.' },
+            { id: 3, name: 'Kundan Jewelry Set', price: 2100, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80', desc: 'Designer Kundan set including earrings and necklace.' }
+        ];
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.image}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <p class="price">₹${p.price}</p>
+                    <div class="btn-group">
+                        <button class="btn-view" onclick="openModal(${p.id})">Details</button>
+                        <button class="btn-add" onclick="addToCart(${p.id})">Add to Bag</button>
+                    </div>
+                    ${document.getElementById('admin-content').style.display === 'block' ? 
+                      `<button style="margin-top:10px; color:red; font-size:0.8em;" onclick="deleteProduct(${p.id})">Delete</button>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Admin Logic
+        function loginAdmin() {
+            const pass = document.getElementById('admin-pass').value;
+            if(pass === 'admin123') {
+                document.getElementById('admin-login').style.display = 'none';
+                document.getElementById('admin-content').style.display = 'block';
+                renderProducts();
+            } else { alert('Wrong Password!'); }
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('p-name').value;
+            const price = document.getElementById('p-price').value;
+            const img = document.getElementById('p-image').value || 'https://via.placeholder.com/400';
+            const desc = document.getElementById('p-desc').value;
+
+            if(!name || !price) return alert('Please fill name and price');
+
+            const newP = { id: Date.now(), name, price: parseInt(price), image: img, desc };
+            products.push(newP);
+            localStorage.setItem('hh_products', JSON.stringify(products));
+            renderProducts();
+            alert('Product added successfully!');
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            localStorage.setItem('hh_products', JSON.stringify(products));
+            renderProducts();
+        }
+
+        // Cart Logic
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const list = document.getElementById('cart-items-list');
+            let total = 0;
+            list.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>₹${item.price} <i class="fas fa-trash" style="color:red; cursor:pointer" onclick="removeFromCart(${index})"></i></span>
+                </div>`;
+            }).join('');
+            document.getElementById('total-price').innerText = `Total: ₹${total}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart(forceOpen = false) {
+            const sidebar = document.getElementById('cart-sidebar');
+            if(forceOpen) sidebar.classList.add('open');
+            else sidebar.classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('show');
+        }
+
+        // Modal Logic
+        function openModal(id) {
+            const p = products.find(p => p.id === id);
+            currentModalProduct = p;
+            document.getElementById('m-title').innerText = p.name;
+            document.getElementById('m-img').src = p.image;
+            document.getElementById('m-desc').innerText = p.desc;
+            document.getElementById('m-price').innerText = `Price: ₹${p.price}`;
+            document.getElementById('product-modal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('product-modal').style.display = 'none'; }
+        
+        function addCurrentToCart() {
+            if(currentModalProduct) addToCart(currentModalProduct.id);
+            closeModal();
+        }
+
+        // Checkout Logic
+        function payWithCOD() {
+            if(cart.length === 0) return alert('Your bag is empty!');
+            let message = "Hi, I want to order:\n";
+            cart.forEach(item => message += `- ${item.name} (₹${item.price})\n`);
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            message += `Total Amount: ₹${total}\nMy Address: `;
+            window.open(`https://wa.me/917067711381?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function payWithRazorpay() {
+            if(cart.length === 0) return alert('Your bag is empty!');
+            alert('Razorpay Integration requires a live API Key. Please replace "rzp_test_xxx" in the script with your real key.');
+            // This is just a demo popup structure
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            var options = {
+                "key": "rzp_test_your_key_here", 
+                "amount": total * 100,
+                "currency": "INR",
+                "name": "The Hitanshi Hub",
+                "handler": function (response){ alert("Payment Successful! ID: " + response.razorpay_payment_id); }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+
+        // Start Grid
+        renderProducts();
+    </script>
+</body>
+</html>
