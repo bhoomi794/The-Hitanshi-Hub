@@ -3,62 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hitanshi Hub | Premium Ladies Boutique</title>
+    <title>The Hitanshi Hub | Premium Shopping</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --dark: #1a1a1a; --light-grey: #f4f4f4; --white: #ffffff; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--light-grey); color: var(--dark); }
+        :root { --gold: #D4AF37; --dark: #1a1a1a; --light: #f4f4f4; --white: #ffffff; --upi-purple: #5f259f; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--light); }
         
-        /* Header */
         header { background: var(--dark); color: white; padding: 15px 20px; position: sticky; top: 0; z-index: 1000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; }
         .logo { font-family: 'Dancing Script', cursive; font-size: 1.8em; color: var(--gold); text-decoration: none; }
         
-        /* Search Bar */
         .search-container { flex: 1; margin: 0 20px; position: relative; max-width: 500px; }
         .search-container input { width: 100%; padding: 10px 15px; border-radius: 20px; border: none; outline: none; background: #333; color: white; }
-        .search-container i { position: absolute; right: 15px; top: 12px; color: var(--gold); }
-
-        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        
         .cart-icon { position: relative; cursor: pointer; color: var(--gold); font-size: 1.4em; }
         .badge { position: absolute; top: -10px; right: -10px; background: red; color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%; }
 
-        /* Hero / Tagline */
-        .hero { text-align: center; padding: 40px 20px; background: white; border-bottom: 2px solid var(--gold); }
-        .hero h1 { margin: 0; font-family: 'Dancing Script'; font-size: 2.5em; }
-        .hero p { color: #666; font-style: italic; letter-spacing: 1px; }
-
-        /* Categories Scroll */
-        .cat-bar { background: white; display: flex; overflow-x: auto; padding: 15px; gap: 20px; justify-content: center; border-bottom: 1px solid #ddd; }
-        .cat-item { cursor: pointer; font-weight: 600; font-size: 13px; padding: 5px 15px; border-radius: 15px; border: 1px solid #ddd; transition: 0.3s; white-space: nowrap; }
-        .cat-item:hover, .cat-item.active { background: var(--gold); color: white; border-color: var(--gold); }
-
-        /* Product Grid */
-        .main-container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
-        .p-card { background: white; border-radius: 10px; overflow: hidden; transition: 0.3s; border: 1px solid #eee; position: relative; }
+        .main-container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .p-card { background: white; border-radius: 10px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .p-img { width: 100%; height: 300px; object-fit: cover; }
+        .p-img { width: 100%; height: 280px; object-fit: cover; }
         .p-info { padding: 15px; text-align: center; }
-        
-        /* Buttons */
-        .btn-group { display: flex; gap: 8px; padding: 0 15px 15px; }
-        .btn { flex: 1; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 11px; text-transform: uppercase; }
-        .btn-cart { background: #eee; color: #333; }
-        .btn-buy { background: var(--gold); color: white; }
 
-        /* Cart Drawer */
         .cart-drawer { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: white; z-index: 2000; transition: 0.4s; padding: 25px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); overflow-y: auto; }
         .cart-drawer.open { right: 0; }
-        .cart-item { display: flex; gap: 10px; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .cart-item { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+
+        .checkout-form { display: none; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin-top: 15px; }
+        .checkout-form input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .step { display: none; }
+        .step.active { display: block; }
+        
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
+        .btn-cart { background: #eee; color: #333; margin-top: 10px;}
+        .btn-buy { background: var(--gold); color: white; }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-upi { background: var(--upi-purple); color: white; }
+        .btn-direct { background: #ff4757; color: white; }
+        .btn-next { background: #28a745; color: white; }
+        
         .remove-btn { color: red; cursor: pointer; margin-left: auto; }
-
-        /* Modal Size Guide */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 3000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; }
-
-        @media (max-width: 768px) { .cat-bar { justify-content: flex-start; } .search-container { display: none; } }
     </style>
 </head>
 <body>
@@ -67,29 +53,14 @@
     <div class="nav-container">
         <a href="#" class="logo">The Hitanshi Hub</a>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Saree, Jewellery ya Chudi search karein..." onkeyup="handleSearch()">
-            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search sarees, bangles..." onkeyup="handleSearch()">
         </div>
-        <div class="nav-icons">
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-bag"></i>
-                <span class="badge" id="cart-count">0</span>
-            </div>
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="badge" id="cart-count">0</span>
         </div>
     </div>
 </header>
-
-<div class="hero">
-    <h1>The Hitanshi Hub</h1>
-    <p>— Shringaar Jo Aapki Shaan Badhaye —</p>
-</div>
-
-<div class="cat-bar" id="catBar">
-    <div class="cat-item active" onclick="filterCat('All', this)">Sabhi Items</div>
-    <div class="cat-item" onclick="filterCat('Saree', this)">Sarees</div>
-    <div class="cat-item" onclick="filterCat('Jewellery', this)">Jewellery</div>
-    <div class="cat-item" onclick="filterCat('Bangles', this)">Traditional Bangles</div>
-</div>
 
 <div class="main-container">
     <div class="grid" id="productGrid"></div>
@@ -98,119 +69,146 @@
 <div class="cart-drawer" id="cartDrawer">
     <div style="display:flex; justify-content:space-between; align-items:center;">
         <h2 style="margin:0;">Aapka Cart</h2>
-        <i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer; font-size:1.5em;"></i>
+        <i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer;"></i>
     </div>
-    <hr style="margin:20px 0;">
+    <hr>
     <div id="cartItems"></div>
-    <div id="cartTotal" style="font-weight:bold; margin:20px 0; font-size:1.3em;">Total: ₹0</div>
-    <button class="btn btn-buy" style="width:100%; padding:15px;" onclick="whatsappCheckout()">WhatsApp Par Order Karein</button>
-</div>
+    <div id="cartTotal" style="font-weight:bold; margin:15px 0; font-size: 1.2em; color: var(--gold);">Total: ₹0</div>
 
-<div id="sizeModal" class="modal" onclick="this.style.display='none'">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <h3>Bangle Size Guide</h3>
-        <p>Hath ke sabse chaude hisse ko scale se naapein.</p>
-        <table style="width:100%; border-collapse: collapse; margin-top:10px;">
-            <tr style="background:#eee;"><th>Inch</th><th>Size</th></tr>
-            <tr><td>2.25"</td><td>2.4</td></tr>
-            <tr><td>2.37"</td><td>2.6</td></tr>
-            <tr><td>2.50"</td><td>2.8</td></tr>
-        </table>
-        <button class="btn btn-buy" style="margin-top:15px;" onclick="document.getElementById('sizeModal').style.display='none'">Samajh Gaya</button>
+    <div id="checkoutStep" class="checkout-form">
+        <div class="step active" id="step1">
+            <h4 style="margin-top:0;">1. Review Order</h4>
+            <div id="reviewItems" style="font-size:12px; margin-bottom:15px; background:#f9f9f9; padding:10px; border-radius:5px;"></div>
+            <button class="btn btn-next" onclick="nextStep(2)">Next: Address</button>
+        </div>
+        
+        <div class="step" id="step2">
+            <h4 style="margin-top:0;">2. Delivery Address</h4>
+            <input type="text" id="custName" placeholder="Full Name">
+            <input type="number" id="custPhone" placeholder="Mobile Number">
+            <input type="text" id="custAddr" placeholder="Full Address (Ghar No, Gali)">
+            <input type="text" id="custPin" placeholder="Pincode">
+            <button class="btn btn-next" onclick="nextStep(3)">Next: Payment</button>
+            <p onclick="nextStep(1)" style="text-align:center; font-size:11px; cursor:pointer;">Back to Review</p>
+        </div>
+        
+        <div class="step" id="step3">
+            <h4 style="margin-top:0;">3. Payment Method</h4>
+            <button class="btn btn-whatsapp" onclick="payNow('WhatsApp')"><i class="fab fa-whatsapp"></i> Order on WhatsApp</button>
+            <button class="btn btn-upi" onclick="payNow('UPI')"><i class="fas fa-mobile-alt"></i> Pay via UPI App</button>
+            <button class="btn btn-direct" onclick="directOrder()"><i class="fas fa-check"></i> Place Direct Order</button>
+            <p onclick="nextStep(2)" style="text-align:center; font-size:11px; cursor:pointer;">Back to Address</p>
+        </div>
     </div>
+
+    <button id="mainCheckoutBtn" class="btn btn-buy" onclick="showCheckout()">Proceed to Checkout</button>
+    <p onclick="toggleCart()" style="text-align:center; cursor:pointer; color:red; font-size:13px; margin-top:20px;">Close Cart</p>
 </div>
 
 <script>
     const products = [
-        { id: 1, name: 'Red Designer Glass Bangles', price: 299, cat: 'Bangles', img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400', hasSize: true },
-        { id: 2, name: '1 Gram Gold Polish Set', price: 1450, cat: 'Jewellery', img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400', hasSize: false },
-        { id: 3, name: 'Party Wear Banarasi Saree', price: 2499, cat: 'Saree', img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400', hasSize: false }
+        { id: 1, name: 'Traditional Red Glass Bangles', price: 299, hasSize: true, img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400' },
+        { id: 2, name: '1 Gram Gold Necklace Set', price: 1450, hasSize: false, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400' },
+        { id: 3, name: 'Designer Silk Saree', price: 2499, hasSize: false, img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400' }
     ];
 
     let cart = [];
 
     function render(data = products) {
-        const grid = document.getElementById('productGrid');
-        grid.innerHTML = data.map(p => `
+        document.getElementById('productGrid').innerHTML = data.map(p => `
             <div class="p-card">
                 <img src="${p.img}" class="p-img">
                 <div class="p-info">
-                    <div style="font-weight:600;">${p.name}</div>
-                    <div style="color:var(--gold); font-weight:bold; font-size:1.2em; margin:5px 0;">₹${p.price}</div>
-                    ${p.hasSize ? `
-                        <div style="display:flex; justify-content:center; gap:10px; align-items:center;">
-                            <select id="size-${p.id}" style="padding:5px; border-radius:4px;">
-                                <option value="2.4">2.4</option>
-                                <option value="2.6">2.6</option>
-                                <option value="2.8">2.8</option>
-                            </select>
-                            <span onclick="document.getElementById('sizeModal').style.display='flex'" style="font-size:10px; color:blue; cursor:pointer; text-decoration:underline;">Size Guide?</span>
-                        </div>
-                    ` : '<div style="height:28px;"></div>'}
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-cart" onclick="addToCart(${p.id})">Add to Cart</button>
-                    <button class="btn btn-buy" onclick="addToCart(${p.id}, true)">Order Now</button>
+                    <strong>${p.name}</strong>
+                    <div style="color:var(--gold); font-weight:bold; font-size:1.2em;">₹${p.price}</div>
+                    ${p.hasSize ? `<select id="size-${p.id}" style="margin-bottom:10px; padding:5px;"><option>2.4</option><option>2.6</option><option>2.8</option></select>` : '<div style="height:34px"></div>'}
+                    <button class="btn btn-buy" onclick="addToCart(${p.id})">Add to Cart</button>
                 </div>
             </div>
         `).join('');
     }
 
     function handleSearch() {
-        const term = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term));
+        const val = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = products.filter(p => p.name.toLowerCase().includes(val));
         render(filtered);
     }
 
-    function filterCat(cat, el) {
-        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        const filtered = cat === 'All' ? products : products.filter(p => p.cat === cat);
-        render(filtered);
-    }
-
-    function addToCart(id, open = false) {
+    function addToCart(id) {
         const p = {...products.find(x => x.id === id)};
         if(p.hasSize) p.selectedSize = document.getElementById(`size-${id}`).value;
-        p.cartId = Date.now() + Math.random();
+        p.cartId = Date.now();
         cart.push(p);
         updateCart();
-        if(open) toggleCart();
-        else alert("Sahi size ke saath add ho gaya!");
-    }
-
-    function removeFromCart(cartId) {
-        cart = cart.filter(item => item.cartId !== cartId);
-        updateCart();
+        alert("Added to Cart!");
     }
 
     function updateCart() {
         document.getElementById('cart-count').innerText = cart.length;
-        const itemsDiv = document.getElementById('cartItems');
-        itemsDiv.innerHTML = cart.map(item => `
+        document.getElementById('cartItems').innerHTML = cart.map(i => `
             <div class="cart-item">
-                <img src="${item.img}" width="50" height="50" style="object-fit:cover; border-radius:4px;">
-                <div style="font-size:12px;">
-                    <div style="font-weight:600;">${item.name}</div>
-                    <div>${item.selectedSize ? 'Size: '+item.selectedSize : ''} | ₹${item.price}</div>
-                </div>
-                <i class="fas fa-trash remove-btn" onclick="removeFromCart(${item.cartId})"></i>
+                <img src="${i.img}" width="40" height="40" style="object-fit:cover; border-radius:4px;">
+                <div style="font-size:11px;"><b>${i.name}</b><br>₹${i.price} ${i.selectedSize ? '| Size: '+i.selectedSize : ''}</div>
+                <i class="fas fa-trash remove-btn" onclick="removeFromCart(${i.cartId})"></i>
             </div>
         `).join('');
-        const total = cart.reduce((s, i) => s + i.price, 0);
-        document.getElementById('cartTotal').innerText = `Total: ₹${total}`;
+        document.getElementById('cartTotal').innerText = `Total: ₹${cart.reduce((s,i)=>s+i.price,0)}`;
+    }
+
+    function removeFromCart(id) { 
+        cart = cart.filter(i => i.cartId !== id); 
+        updateCart(); 
+        if(cart.length === 0) {
+            document.getElementById('checkoutStep').style.display = 'none';
+            document.getElementById('mainCheckoutBtn').style.display = 'block';
+        }
     }
 
     function toggleCart() { document.getElementById('cartDrawer').classList.toggle('open'); }
 
-    function whatsappCheckout() {
-        if(cart.length === 0) return alert("Cart khali hai!");
-        let msg = `New Order from The Hitanshi Hub 🛍️\n\n`;
-        cart.forEach((i, idx) => {
-            msg += `${idx+1}. ${i.name} (${i.selectedSize || 'N/A'}) - ₹${i.price}\n`;
-        });
-        msg += `\nFinal Bill: ₹${cart.reduce((s,i)=>s+i.price,0)}\n\nKripya order process karein.`;
-        window.open(`https://wa.me/917067711381?text=${encodeURIComponent(msg)}`);
+    function showCheckout() {
+        if(cart.length === 0) return alert("Cart is empty!");
+        document.getElementById('checkoutStep').style.display = 'block';
+        document.getElementById('mainCheckoutBtn').style.display = 'none';
+        nextStep(1);
+    }
+
+    function nextStep(step) {
+        if(step === 2) updateReview();
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById(`step${step}`).classList.add('active');
+    }
+
+    function updateReview() {
+        document.getElementById('reviewItems').innerHTML = cart.map(i => `
+            <div>• ${i.name} (${i.selectedSize || 'N/A'})</div>
+        `).join('');
+    }
+
+    function payNow(method) {
+        const name = document.getElementById('custName').value;
+        const phone = document.getElementById('custPhone').value;
+        const addr = document.getElementById('custAddr').value;
+        if(!name || !phone || !addr) return alert("Please fill all address details!");
+
+        const total = cart.reduce((s,i)=>s+i.price,0);
+        let itemsList = cart.map(i => `${i.name} (${i.selectedSize || 'Standard'})`).join(', ');
+
+        if(method === 'WhatsApp') {
+            let msg = `🛍️ *New Order from Website*\n\n*Items:* ${itemsList}\n*Total:* ₹${total}\n\n*Address:* ${name}\n*Phone:* ${phone}\n*Loc:* ${addr}`;
+            window.open(`https://wa.me/917067711381?text=${encodeURIComponent(msg)}`);
+        } else {
+            // Standard UPI Deep-link
+            let upiLink = `upi://pay?pa=930356032@ybl&pn=TheHitanshiHub&am=${total}&tn=Order_HitanshiHub&cu=INR`;
+            window.location.href = upiLink;
+        }
+    }
+
+    function directOrder() {
+        alert("Order Received! We will contact you on WhatsApp shortly to confirm.");
+        cart = []; updateCart(); toggleCart();
+        document.getElementById('checkoutStep').style.display = 'none';
+        document.getElementById('mainCheckoutBtn').style.display = 'block';
     }
 
     render();
