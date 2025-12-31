@@ -1,178 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hitanshi Hub | Reviews & Size Guide</title>
+    <title>The Hitanshi Hub | Premium Ladies Boutique</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #fb641b; --secondary: #2874f0; --dark: #212121; --light: #f1f3f6; --gold: #D4AF37; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--light); scroll-behavior: smooth; }
+        :root { --gold: #D4AF37; --dark: #1a1a1a; --light-grey: #f4f4f4; --white: #ffffff; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--light-grey); color: var(--dark); }
         
-        /* Header & Nav */
-        .top-nav { background: var(--secondary); color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Dancing Script', cursive; font-size: 1.8em; font-weight: bold; color: white; text-decoration: none; }
+        /* Header */
+        header { background: var(--dark); color: white; padding: 15px 20px; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; }
+        .logo { font-family: 'Dancing Script', cursive; font-size: 1.8em; color: var(--gold); text-decoration: none; }
+        
+        /* Search Bar */
+        .search-container { flex: 1; margin: 0 20px; position: relative; max-width: 500px; }
+        .search-container input { width: 100%; padding: 10px 15px; border-radius: 20px; border: none; outline: none; background: #333; color: white; }
+        .search-container i { position: absolute; right: 15px; top: 12px; color: var(--gold); }
 
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .p-card { background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0; transition: 0.3s; }
-        .p-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .cart-icon { position: relative; cursor: pointer; color: var(--gold); font-size: 1.4em; }
+        .badge { position: absolute; top: -10px; right: -10px; background: red; color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%; }
+
+        /* Hero / Tagline */
+        .hero { text-align: center; padding: 40px 20px; background: white; border-bottom: 2px solid var(--gold); }
+        .hero h1 { margin: 0; font-family: 'Dancing Script'; font-size: 2.5em; }
+        .hero p { color: #666; font-style: italic; letter-spacing: 1px; }
+
+        /* Categories Scroll */
+        .cat-bar { background: white; display: flex; overflow-x: auto; padding: 15px; gap: 20px; justify-content: center; border-bottom: 1px solid #ddd; }
+        .cat-item { cursor: pointer; font-weight: 600; font-size: 13px; padding: 5px 15px; border-radius: 15px; border: 1px solid #ddd; transition: 0.3s; white-space: nowrap; }
+        .cat-item:hover, .cat-item.active { background: var(--gold); color: white; border-color: var(--gold); }
+
+        /* Product Grid */
+        .main-container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        .p-card { background: white; border-radius: 10px; overflow: hidden; transition: 0.3s; border: 1px solid #eee; position: relative; }
+        .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .p-img { width: 100%; height: 300px; object-fit: cover; }
-
-        /* Size Selection Styling */
-        .size-box { padding: 15px; background: #fffaf0; border-top: 1px dashed #ddd; }
-        .size-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-        .size-guide-link { color: var(--secondary); font-size: 12px; cursor: pointer; font-weight: 600; text-decoration: underline; }
-        .size-select { width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; }
-
-        /* Reviews Section */
-        .reviews-container { margin-top: 50px; background: white; padding: 40px 20px; border-radius: 10px; }
-        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .review-card { border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; }
-        .review-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
-        .stars { color: var(--gold); margin-bottom: 10px; }
-
-        /* Modal */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: white; padding: 25px; border-radius: 15px; max-width: 450px; width: 100%; text-align: center; position: relative; }
-        .close-modal { position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; }
-
+        .p-info { padding: 15px; text-align: center; }
+        
         /* Buttons */
-        .btn-group { display: flex; gap: 10px; padding: 15px; }
-        .btn { flex: 1; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 12px; }
-        .btn-cart { background: #ff9f00; color: white; }
-        .btn-buy { background: #fb641b; color: white; }
+        .btn-group { display: flex; gap: 8px; padding: 0 15px 15px; }
+        .btn { flex: 1; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 11px; text-transform: uppercase; }
+        .btn-cart { background: #eee; color: #333; }
+        .btn-buy { background: var(--gold); color: white; }
 
         /* Cart Drawer */
         .cart-drawer { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: white; z-index: 2000; transition: 0.4s; padding: 25px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); overflow-y: auto; }
         .cart-drawer.open { right: 0; }
+        .cart-item { display: flex; gap: 10px; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .remove-btn { color: red; cursor: pointer; margin-left: auto; }
+
+        /* Modal Size Guide */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 3000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; }
+
+        @media (max-width: 768px) { .cat-bar { justify-content: flex-start; } .search-container { display: none; } }
     </style>
 </head>
 <body>
 
-<div class="top-nav">
-    <a href="#" class="logo">The Hitanshi Hub</a>
-    <div onclick="toggleCart()" style="cursor:pointer; position:relative;">
-        <i class="fas fa-shopping-bag fa-lg"></i>
-        <span id="cart-count" style="position:absolute; top:-8px; right:-10px; background:red; color:white; padding:2px 7px; border-radius:50%; font-size:10px; font-weight:bold;">0</span>
+<header>
+    <div class="nav-container">
+        <a href="#" class="logo">The Hitanshi Hub</a>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Saree, Jewellery ya Chudi search karein..." onkeyup="handleSearch()">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="nav-icons">
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="badge" id="cart-count">0</span>
+            </div>
+        </div>
     </div>
+</header>
+
+<div class="hero">
+    <h1>The Hitanshi Hub</h1>
+    <p>— Shringaar Jo Aapki Shaan Badhaye —</p>
 </div>
 
-<div class="container">
-    <h2 style="text-align:center; font-family: 'Dancing Script'; font-size: 2.8em; color: var(--primary);">Traditional Glass Bangle Collection</h2>
+<div class="cat-bar" id="catBar">
+    <div class="cat-item active" onclick="filterCat('All', this)">Sabhi Items</div>
+    <div class="cat-item" onclick="filterCat('Saree', this)">Sarees</div>
+    <div class="cat-item" onclick="filterCat('Jewellery', this)">Jewellery</div>
+    <div class="cat-item" onclick="filterCat('Bangles', this)">Traditional Bangles</div>
+</div>
+
+<div class="main-container">
     <div class="grid" id="productGrid"></div>
-
-    <div class="reviews-container">
-        <h2 style="text-align:center; font-family: 'Dancing Script'; font-size: 2.5em;">Our Happy Customers</h2>
-        <p style="text-align:center; color: #666;">See what our customers are saying about our quality!</p>
-        <div class="review-grid">
-            <div class="review-card">
-                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400" class="review-img">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p style="font-size: 13px;">"Chudiyon ki chamak bilkul asli kanch jaisi hai. Size 2.6 ekdum perfect aaya!"</p>
-                <strong>- Sunita Gupta</strong>
-            </div>
-            <div class="review-card">
-                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400" class="review-img">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p style="font-size: 13px;">"Packaging bahut achhi thi, ek bhi chudi nahi tuti. 1gm jewellery bhi bahut sunder hai."</p>
-                <strong>- Rekha Singh</strong>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="sizeModal" class="modal" onclick="closeSizeChart()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-modal" onclick="closeSizeChart()">&times;</span>
-        <h3 style="color: var(--secondary);">How to Measure Your Size?</h3>
-        <div style="background: #f9f9f9; padding: 10px; border-radius: 10px; margin-bottom: 15px;">
-            <p style="font-size: 12px; color: #555;">Apne purane kangan ko scale par rakh kar niche wale chart se milayein.</p>
-        </div>
-        <table style="width:100%; border-collapse: collapse;">
-            <tr style="background:#eee;">
-                <th style="padding:10px; border:1px solid #ddd;">Scale Se Naap</th>
-                <th style="padding:10px; border:1px solid #ddd;">Bangle Size</th>
-            </tr>
-            <tr><td style="padding:10px; border:1px solid #ddd;">2.25 Inch</td><td style="padding:10px; border:1px solid #ddd;">2.4</td></tr>
-            <tr><td style="padding:10px; border:1px solid #ddd;">2.37 Inch</td><td style="padding:10px; border:1px solid #ddd;">2.6</td></tr>
-            <tr><td style="padding:10px; border:1px solid #ddd;">2.50 Inch</td><td style="padding:10px; border:1px solid #ddd;">2.8</td></tr>
-        </table>
-    </div>
 </div>
 
 <div class="cart-drawer" id="cartDrawer">
-    <h2 style="margin-top:0; color: var(--secondary);">Shopping Cart</h2>
-    <hr>
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 style="margin:0;">Aapka Cart</h2>
+        <i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer; font-size:1.5em;"></i>
+    </div>
+    <hr style="margin:20px 0;">
     <div id="cartItems"></div>
-    <div id="cartTotal" style="font-weight:bold; margin:20px 0; font-size:1.5em; color: var(--primary);"></div>
-    <button class="btn btn-buy" style="width:100%; padding:15px;" onclick="checkout()">Checkout via WhatsApp</button>
-    <p onclick="toggleCart()" style="text-align:center; cursor:pointer; color:red; margin-top:20px; font-weight:600;">Add More Items</p>
+    <div id="cartTotal" style="font-weight:bold; margin:20px 0; font-size:1.3em;">Total: ₹0</div>
+    <button class="btn btn-buy" style="width:100%; padding:15px;" onclick="whatsappCheckout()">WhatsApp Par Order Karein</button>
+</div>
+
+<div id="sizeModal" class="modal" onclick="this.style.display='none'">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h3>Bangle Size Guide</h3>
+        <p>Hath ke sabse chaude hisse ko scale se naapein.</p>
+        <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+            <tr style="background:#eee;"><th>Inch</th><th>Size</th></tr>
+            <tr><td>2.25"</td><td>2.4</td></tr>
+            <tr><td>2.37"</td><td>2.6</td></tr>
+            <tr><td>2.50"</td><td>2.8</td></tr>
+        </table>
+        <button class="btn btn-buy" style="margin-top:15px;" onclick="document.getElementById('sizeModal').style.display='none'">Samajh Gaya</button>
+    </div>
 </div>
 
 <script>
     const products = [
-        { id: 101, name: 'Traditional Red Glass Bangles', price: 299, cat: 'Bangles', img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400', hasSize: true },
-        { id: 102, name: '1 Gram Gold Polish Necklace', price: 1450, cat: 'Jewellery', img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400', hasSize: false },
-        { id: 103, name: 'Velvet Finish Fancy Chudi', price: 399, cat: 'Bangles', img: 'https://images.unsplash.com/photo-1535556116002-6281ff3e9f36?w=400', hasSize: true }
+        { id: 1, name: 'Red Designer Glass Bangles', price: 299, cat: 'Bangles', img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400', hasSize: true },
+        { id: 2, name: '1 Gram Gold Polish Set', price: 1450, cat: 'Jewellery', img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400', hasSize: false },
+        { id: 3, name: 'Party Wear Banarasi Saree', price: 2499, cat: 'Saree', img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400', hasSize: false }
     ];
 
     let cart = [];
 
-    function render() {
-        document.getElementById('productGrid').innerHTML = products.map(p => `
+    function render(data = products) {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = data.map(p => `
             <div class="p-card">
                 <img src="${p.img}" class="p-img">
-                <div style="padding:15px;">
-                    <div style="font-weight:600; font-size:16px;">${p.name}</div>
-                    <div style="color:#388e3c; font-weight:bold; font-size:20px; margin:5px 0;">₹${p.price}</div>
-                    
+                <div class="p-info">
+                    <div style="font-weight:600;">${p.name}</div>
+                    <div style="color:var(--gold); font-weight:bold; font-size:1.2em; margin:5px 0;">₹${p.price}</div>
                     ${p.hasSize ? `
-                    <div class="size-box">
-                        <div class="size-header">
-                            <span style="font-size:13px; font-weight:600;">Size Selection</span>
-                            <span class="size-guide-link" onclick="openSizeChart()">View Size Chart</span>
+                        <div style="display:flex; justify-content:center; gap:10px; align-items:center;">
+                            <select id="size-${p.id}" style="padding:5px; border-radius:4px;">
+                                <option value="2.4">2.4</option>
+                                <option value="2.6">2.6</option>
+                                <option value="2.8">2.8</option>
+                            </select>
+                            <span onclick="document.getElementById('sizeModal').style.display='flex'" style="font-size:10px; color:blue; cursor:pointer; text-decoration:underline;">Size Guide?</span>
                         </div>
-                        <select class="size-select" id="size-${p.id}">
-                            <option value="2.4">2.4 (Small)</option>
-                            <option value="2.6">2.6 (Medium)</option>
-                            <option value="2.8">2.8 (Large)</option>
-                        </select>
-                    </div>` : ''}
+                    ` : '<div style="height:28px;"></div>'}
                 </div>
                 <div class="btn-group">
-                    <button class="btn btn-cart" onclick="addToCart(${p.id})">Cart</button>
+                    <button class="btn btn-cart" onclick="addToCart(${p.id})">Add to Cart</button>
                     <button class="btn btn-buy" onclick="addToCart(${p.id}, true)">Order Now</button>
                 </div>
             </div>
         `).join('');
     }
 
-    function openSizeChart() { document.getElementById('sizeModal').style.display = 'flex'; }
-    function closeSizeChart() { document.getElementById('sizeModal').style.display = 'none'; }
+    function handleSearch() {
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term));
+        render(filtered);
+    }
+
+    function filterCat(cat, el) {
+        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+        const filtered = cat === 'All' ? products : products.filter(p => p.cat === cat);
+        render(filtered);
+    }
 
     function addToCart(id, open = false) {
         const p = {...products.find(x => x.id === id)};
-        if(p.hasSize) {
-            p.selectedSize = document.getElementById(`size-${id}`).value;
-        }
+        if(p.hasSize) p.selectedSize = document.getElementById(`size-${id}`).value;
+        p.cartId = Date.now() + Math.random();
         cart.push(p);
         updateCart();
         if(open) toggleCart();
-        else alert("Sahi size ke saath cart mein add ho gaya!");
+        else alert("Sahi size ke saath add ho gaya!");
+    }
+
+    function removeFromCart(cartId) {
+        cart = cart.filter(item => item.cartId !== cartId);
+        updateCart();
     }
 
     function updateCart() {
         document.getElementById('cart-count').innerText = cart.length;
-        document.getElementById('cartItems').innerHTML = cart.map(item => `
-            <div style="display:flex; gap:12px; margin-bottom:15px; border-bottom:1px solid #f0f0f0; padding-bottom:10px;">
-                <img src="${item.img}" width="65" height="65" style="object-fit:cover; border-radius:5px;">
-                <div>
-                    <div style="font-size:13px; font-weight:600;">${item.name}</div>
-                    <div style="font-size:12px; color:#666;">Size: ${item.selectedSize || 'Standard'}</div>
-                    <div style="color:var(--secondary); font-weight:bold;">₹${item.price}</div>
+        const itemsDiv = document.getElementById('cartItems');
+        itemsDiv.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <img src="${item.img}" width="50" height="50" style="object-fit:cover; border-radius:4px;">
+                <div style="font-size:12px;">
+                    <div style="font-weight:600;">${item.name}</div>
+                    <div>${item.selectedSize ? 'Size: '+item.selectedSize : ''} | ₹${item.price}</div>
                 </div>
+                <i class="fas fa-trash remove-btn" onclick="removeFromCart(${item.cartId})"></i>
             </div>
         `).join('');
         const total = cart.reduce((s, i) => s + i.price, 0);
@@ -181,13 +203,13 @@
 
     function toggleCart() { document.getElementById('cartDrawer').classList.toggle('open'); }
 
-    function checkout() {
-        if(cart.length === 0) return alert("Aapka cart khali hai!");
-        let msg = `New Order From The Hitanshi Hub 🛍️\n\n`;
+    function whatsappCheckout() {
+        if(cart.length === 0) return alert("Cart khali hai!");
+        let msg = `New Order from The Hitanshi Hub 🛍️\n\n`;
         cart.forEach((i, idx) => {
-            msg += `${idx+1}. ${i.name}\n   Size: ${i.selectedSize || 'Standard'}\n   Price: ₹${i.price}\n\n`;
+            msg += `${idx+1}. ${i.name} (${i.selectedSize || 'N/A'}) - ₹${i.price}\n`;
         });
-        msg += `💰 Bill Total: ₹${cart.reduce((s,i)=>s+i.price,0)}\n\nKripya mera order confirm karein!`;
+        msg += `\nFinal Bill: ₹${cart.reduce((s,i)=>s+i.price,0)}\n\nKripya order process karein.`;
         window.open(`https://wa.me/917067711381?text=${encodeURIComponent(msg)}`);
     }
 
