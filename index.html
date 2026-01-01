@@ -166,7 +166,9 @@
     let wishlist = [];
 
     function render(data = products) {
-        document.getElementById('productGrid').innerHTML = data.map(p => `
+        const grid = document.getElementById('productGrid');
+        if(!grid) return;
+        grid.innerHTML = data.map(p => `
             <div class="p-card">
                 <i class="fas fa-heart wishlist-heart" onclick="toggleWish(${p.id}, this)"></i>
                 <img src="${p.img}" class="p-img">
@@ -238,6 +240,7 @@
     }
 
     function toggleDrawer(id) { document.getElementById(id).classList.toggle('open'); }
+    
     function showAddress() { 
         if(cart.length === 0) return alert("Cart khali hai!");
         document.getElementById('addressSection').style.display = 'block';
@@ -245,19 +248,22 @@
     }
 
     function processOrder(method) {
-        const name = document.getElementById('uName').value;
-        const phone = document.getElementById('uPhone').value;
-        const addr = document.getElementById('uAddr').value;
-        if(!name || !phone || !addr) return alert("Address sahi se bharein!");
+        const name = document.getElementById('uName').value.trim();
+        const phone = document.getElementById('uPhone').value.trim();
+        const addr = document.getElementById('uAddr').value.trim();
+        
+        if(!name || !phone || !addr) return alert("Kripya poora address bharein!");
 
         const total = cart.reduce((s,i) => s + i.price, 0);
         const details = cart.map(i => `${i.name} (${i.size || 'N/A'})`).join(', ');
 
         if(method === 'WA') {
-            const msg = `Order: ${details}\nTotal: ₹${total}\nAddress: ${name}, ${phone}, ${addr}`;
-            window.open(`https://wa.me/919303560362?text=${encodeURIComponent(msg)}`);
+            const msg = `*Naya Order - The Hitanshi Hub*\n\n*Items:* ${details}\n*Total:* ₹${total}\n\n*Customer:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}`;
+            const waUrl = `https://api.whatsapp.com/send?phone=919303560362&text=${encodeURIComponent(msg)}`;
+            window.location.href = waUrl;
         } else {
-            window.location.href = `upi://pay?pa=9303560362@ybl&pn=TheHitanshiHub&am=${total}&tn=Order_Website&cu=INR`;
+            const upiUrl = `upi://pay?pa=9303560362@ybl&pn=TheHitanshiHub&am=${total}&tn=Order_Website&cu=INR`;
+            window.location.href = upiUrl;
         }
     }
 
@@ -265,4 +271,5 @@
 </script>
 </body>
 </html>
+
 
