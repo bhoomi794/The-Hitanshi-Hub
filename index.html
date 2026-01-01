@@ -182,17 +182,6 @@
         `).join('');
     }
 
-    function handleSearch() {
-        const val = document.getElementById('searchInput').value.toLowerCase();
-        render(products.filter(p => p.name.toLowerCase().includes(val)));
-    }
-
-    function filterCat(cat, el) {
-        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        render(cat === 'All' ? products : products.filter(p => p.cat === cat));
-    }
-
     function addToCart(id) {
         const p = {...products.find(x => x.id === id)};
         if(p.hasSize) p.size = document.getElementById(`sz-${id}`).value;
@@ -200,15 +189,6 @@
         cart.push(p);
         updateCart();
         alert("Cart mein add ho gaya!");
-    }
-
-    function toggleWish(id, el) {
-        el.classList.toggle('active');
-        const p = products.find(x => x.id === id);
-        if(el.classList.contains('active')) wishlist.push(p);
-        else wishlist = wishlist.filter(x => x.id !== id);
-        document.getElementById('wish-count').innerText = wishlist.length;
-        updateWishlistUI();
     }
 
     function updateCart() {
@@ -229,16 +209,6 @@
         updateCart();
     }
 
-    function updateWishlistUI() {
-        document.getElementById('wishItems').innerHTML = wishlist.map(i => `
-            <div class="drawer-item">
-                <img src="${i.img}" width="40" height="40">
-                <div style="font-size:11px;"><b>${i.name}</b><br>₹${i.price}</div>
-                <button onclick="addToCart(${i.id})" style="font-size:10px; padding:2px 5px; background:var(--gold); color:white; border:none; border-radius:3px;">Add</button>
-            </div>
-        `).join('');
-    }
-
     function toggleDrawer(id) { document.getElementById(id).classList.toggle('open'); }
     
     function showAddress() { 
@@ -252,17 +222,34 @@
         const phone = document.getElementById('uPhone').value.trim();
         const addr = document.getElementById('uAddr').value.trim();
         
-        if(!name || !phone || !addr) return alert("Kripya poora address bharein!");
+        if(!name || !phone || !addr) return alert("Kripya details bharein!");
 
         const total = cart.reduce((s,i) => s + i.price, 0);
         const details = cart.map(i => `${i.name} (${i.size || 'N/A'})`).join(', ');
 
         if(method === 'WA') {
-            const msg = `*Naya Order - The Hitanshi Hub*\n\n*Items:* ${details}\n*Total:* ₹${total}\n\n*Customer:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}`;
-            const waUrl = `https://api.whatsapp.com/send?phone=919303560362&text=${encodeURIComponent(msg)}`;
-            window.location.href = waUrl;
+            const msg = `*Naya Order*\nItems: ${details}\nTotal: ₹${total}\nCustomer: ${name}\nAddress: ${addr}`;
+            window.location.href = `https://api.whatsapp.com/send?phone=919303560362&text=${encodeURIComponent(msg)}`;
         } else {
-            const upiUrl = `upi://pay?pa=9303560362@ybl&pn=TheHitanshiHub&am=${total}&tn=Order_Website&cu=INR`;
+            // UPI Payment link
+            const upiUrl = `upi://pay?pa=9303560362@ybl&pn=TheHitanshiHub&am=${total}&cu=INR`;
+            
+            // QR Code display karne ke liye ek popup window
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+            
+            const qrWindow = window.open("", "Payment", "width=300,height=450");
+            qrWindow.document.write(`
+                <div style="text-align:center; font-family:sans-serif; padding:20px;">
+                    <h3>Scan to Pay ₹${total}</h3>
+                    <img src="${qrUrl}" style="margin:20px 0;">
+                    <p>Scan karein ya Screenshot lekar Payment App mein upload karein.</p>
+                    <button onclick="window.location.href='${upiUrl}'" style="padding:10px; background:#ff1493; color:white; border:none; border-radius:5px;">Open UPI App Directly</button>
+                    <br><br>
+                    <small>Payment ke baad WhatsApp par screenshot bhejein.</small>
+                </div>
+            `);
+            
+            // Direct app open karne ki koshish
             window.location.href = upiUrl;
         }
     }
@@ -271,5 +258,6 @@
 </script>
 </body>
 </html>
+
 
 
