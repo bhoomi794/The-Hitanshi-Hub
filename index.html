@@ -18,19 +18,19 @@
         .icon-btn { position: relative; cursor: pointer; padding: 5px; }
         .badge { position: absolute; top: -5px; right: -5px; background: var(--dark); color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%; }
 
-        /* Hero & Search (Point 9) */
+        /* Hero & Search */
         .hero { text-align: center; padding: 15px; background: var(--white); border-bottom: 2px solid var(--primary); }
         .tagline { color: var(--gold); font-weight: 600; margin: 0; font-size: 0.9em; letter-spacing: 1px; }
         .search-container { max-width: 500px; margin: 10px auto 0; position: relative; padding: 0 15px; }
         .search-container input { width: 100%; padding: 10px 40px 10px 15px; border-radius: 25px; border: 1px solid #ddd; outline: none; box-sizing: border-box; }
         .search-container i { position: absolute; right: 30px; top: 10px; color: var(--primary); }
 
-        /* Categories (Restored) */
+        /* Categories */
         .cat-bar { background: var(--white); display: flex; overflow-x: auto; padding: 10px; gap: 10px; justify-content: center; border-bottom: 1px solid #eee; scrollbar-width: none; }
         .cat-item { cursor: pointer; font-size: 12px; font-weight: 600; padding: 6px 15px; border-radius: 20px; border: 1px solid var(--primary); color: var(--primary); white-space: nowrap; }
         .cat-item.active { background: var(--primary); color: white; }
 
-        /* Product Grid & Offers (Point 11) */
+        /* Product Grid */
         .main-container { max-width: 1200px; margin: 10px auto; padding: 0 10px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
         .p-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #eee; position: relative; transition: 0.3s; display: flex; flex-direction: column; }
@@ -40,32 +40,41 @@
         .old-price { text-decoration: line-through; color: var(--gray); font-size: 0.9em; margin-right: 5px; }
         .rating { color: #ffc107; font-size: 0.8em; margin-bottom: 5px; }
 
-        /* Buttons & Back Buttons (Point 3, 5, 6) */
+        /* Buttons */
         .btn { width: 100%; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; margin-top: 5px; font-size: 11px; }
         .btn-detail { background: #f0f0f0; color: #333; }
         .btn-add { background: var(--gold); color: white; }
         .btn-back { background: var(--dark); color: white; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        /* Drawer System & Wishlist Details (Point 1, 2) */
+        /* Drawer System */
         .drawer { position: fixed; right: -100%; top: 0; width: 320px; height: 100%; background: white; z-index: 2000; transition: 0.4s; padding: 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); overflow-y: auto; }
         .drawer.open { right: 0; }
         .drawer-item { display: flex; gap: 10px; border-bottom: 1px solid #eee; padding: 10px 0; align-items: center; }
         .trash-icon { color: #ff4d4d; cursor: pointer; margin-left: auto; }
         
-        /* Address Section (Restored) */
+        /* Address Section */
         .address-form { display: none; margin-top: 15px; background: #fffafb; padding: 10px; border-radius: 10px; border: 1px dashed var(--primary); }
         .address-form input, .address-form textarea { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-family: inherit; }
 
-        /* Floating WhatsApp (Professional Icon & Message) */
+        /* Floating WhatsApp */
         .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; z-index: 3000; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); animation: pulse 2s infinite; }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
-        footer { text-align: center; padding: 20px; color: var(--gold); font-weight: bold; background: white; border-top: 1px solid #eee; font-size: 0.8em; }
+        /* QR Overlay Style */
+        #qrOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 
+        footer { text-align: center; padding: 20px; color: var(--gold); font-weight: bold; background: white; border-top: 1px solid #eee; font-size: 0.8em; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } .drawer { width: 85%; } }
     </style>
 </head>
 <body>
+
+<div id="qrOverlay">
+    <h2 style="color:var(--primary); font-family:'Dancing Script'; font-size: 2em;">The Hitanshi Hub</h2>
+    <div id="qrImg" style="margin: 20px;"></div>
+    <p style="padding: 0 20px;">Scan karke payment karein aur screenshot WhatsApp karein.</p>
+    <button class="btn" style="width:200px; background:var(--dark); color:white; padding:12px; font-size: 14px;" onclick="document.getElementById('qrOverlay').style.display='none'">← Back to Home</button>
+</div>
 
 <a href="https://wa.me/919303560362?text=नमस्ते The Hitanshi Hub! मुझे आपके कलेक्शन के बारे में जानकारी चाहिए।" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
@@ -137,7 +146,6 @@
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx4D-WBR-HlpmEtI0QSgzIJphKPz6ak-ofyPnvTvcxAugHDrTbZLJcUCB-gvpSWCmZR/exec';
 
-    // Easy Admin Section (Point 8) - Yahan se product badlein
     const products = [
         { id: 1, name: 'Silk Designer Saree', price: 1899, oldPrice: 2499, cat: 'Saree', img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500', material: 'Pure Silk', color: 'Red & Gold', rating: 4.5 },
         { id: 2, name: 'Bridal Bangles Set', price: 599, oldPrice: 899, cat: 'Bangles', img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500', material: 'Glass/Stone', color: 'Maroon', rating: 4.8 },
@@ -153,7 +161,7 @@
             <div class="p-card" id="prod-${p.id}">
                 <img src="${p.img}" class="p-img" onclick="showDetails(${p.id})">
                 <div class="p-info">
-                    <div class="rating"><i class="fas fa-star"></i> ${p.rating} | ⭐⭐⭐⭐⭐</div>
+                    <div class="rating"><i class="fas fa-star"></i> ${p.rating}</div>
                     <strong>${p.name}</strong><br>
                     <span class="old-price">₹${p.oldPrice}</span> <span class="price-tag">₹${p.price}</span>
                     <button class="btn btn-detail" onclick="showDetails(${p.id})">More Detail</button>
@@ -187,7 +195,6 @@
             <p><b>Material:</b> ${p.material}</p>
             <p><b>Color:</b> ${p.color}</p>
             <p><b>Price:</b> ₹${p.price} <span style="text-decoration:line-through; color:gray;">₹${p.oldPrice}</span></p>
-            <p><b>Rating:</b> ⭐ ${p.rating} / 5</p>
             <button class="btn btn-add" onclick="addToCart(${p.id})">ADD TO CART</button>
         `;
         toggleDrawer('detailDrawer');
@@ -204,18 +211,11 @@
         document.getElementById('wish-count').innerText = wishlist.length;
         document.getElementById('wishItems').innerHTML = products.filter(p => wishlist.includes(p.id)).map(i => `
             <div class="drawer-item">
-                <img src="${i.img}" width="50" onclick="goToProduct(${i.id})" style="cursor:pointer; border-radius:5px;">
-                <div style="flex:1" onclick="goToProduct(${i.id})" style="cursor:pointer">
-                    <b>${i.name}</b><br>₹${i.price}
-                </div>
+                <img src="${i.img}" width="50" style="border-radius:5px;">
+                <div style="flex:1"><b>${i.name}</b><br>₹${i.price}</div>
                 <i class="fas fa-trash-alt trash-icon" onclick="toggleWish(${i.id})"></i>
             </div>
         `).join('') || "Wishlist khali hai.";
-    }
-
-    function goToProduct(id) {
-        toggleDrawer('wishlistDrawer');
-        window.scrollTo({ top: document.getElementById(`prod-${id}`).offsetTop - 100, behavior: 'smooth' });
     }
 
     function addToCart(id) {
@@ -248,8 +248,9 @@
         const addr = document.getElementById('uAddr').value;
         if(!name || !phone || !addr) return alert("Kripya details bharein!");
 
+        const totalAmt = cart.reduce((s,i) => s + i.price, 0);
         const orderId = 'THH' + Math.floor(1000 + Math.random() * 9000);
-        const orderData = { orderId, name, phone, address: addr, items: cart.map(i => i.name).join(','), total: cart.reduce((s,i) => s + i.price, 0), method };
+        const orderData = { orderId, name, phone, address: addr, items: cart.map(i => i.name).join(','), total: totalAmt, method };
 
         try { await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(orderData) }); } catch(e) {}
 
@@ -257,7 +258,14 @@
         localStorage.setItem('thh_orders', JSON.stringify(orderHistory));
         
         const msg = `*🛍️ NAYA ORDER (${method}) - THE HITANSHI HUB*\n------------------------------\n*Order ID:* ${orderId}\n*Customer:* ${name}\n*Items:* ${orderData.items}\n*Total:* ₹${orderData.total}\n------------------------------`;
-        window.open(`https://wa.me/919303560362?text=${encodeURIComponent(msg)}`, '_blank');
+
+        if(method === 'UPI') {
+            const upiUrl = `upi://pay?pa=9303560362@ybl&pn=TheHitanshiHub&am=${totalAmt}&cu=INR`;
+            document.getElementById('qrImg').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}">`;
+            document.getElementById('qrOverlay').style.display = 'flex';
+        } else {
+            window.open(`https://wa.me/919303560362?text=${encodeURIComponent(msg)}`, '_blank');
+        }
 
         cart = []; updateCart(); toggleDrawer('cartDrawer'); updateOrderBookUI();
         document.getElementById('addressSection').style.display = 'none';
