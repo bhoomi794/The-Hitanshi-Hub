@@ -9,54 +9,38 @@
     <style>
         :root { --primary: #ff1493; --gold: #daa520; --dark: #1e1e2f; --light-pink: #fff0f5; --white: #ffffff; }
         body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--light-pink); color: var(--dark); }
-        
         header { background: var(--white); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; }
         .logo { font-family: 'Dancing Script', cursive; font-size: 1.8em; color: var(--primary); text-decoration: none; font-weight: bold; }
-        
         .nav-icons { display: flex; gap: 20px; align-items: center; font-size: 1.2em; color: var(--primary); }
         .icon-btn { position: relative; cursor: pointer; transition: 0.3s; }
         .badge { position: absolute; top: -10px; right: -10px; background: var(--dark); color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%; }
-
-        .floating-whatsapp {
-            position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white;
-            width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 35px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 3000; display: flex; align-items: center; justify-content: center; text-decoration: none;
-        }
-
+        .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 35px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 3000; display: flex; align-items: center; justify-content: center; text-decoration: none; }
         .hero { text-align: center; padding: 30px 20px; background: var(--white); border-bottom: 3px solid var(--primary); }
         .hero h1 { margin: 0; color: var(--primary); font-family: 'Dancing Script'; font-size: 2.2em; }
         .hero p { color: var(--gold); font-weight: 600; margin-top: 5px; letter-spacing: 1px; }
-
         .cat-bar { background: var(--white); display: flex; overflow-x: auto; padding: 10px; gap: 15px; justify-content: center; border-bottom: 1px solid #eee; }
         .cat-item { cursor: pointer; font-size: 12px; font-weight: 600; padding: 6px 15px; border-radius: 20px; border: 1px solid var(--primary); color: var(--primary); white-space: nowrap; transition: 0.3s; }
         .cat-item.active { background: var(--primary); color: white; }
-
         .main-container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .p-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; position: relative; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 20, 147, 0.2); }
         .p-img { width: 100%; height: 260px; object-fit: cover; }
         .p-info { padding: 12px; text-align: center; }
-
-        /* Wishlist Heart Style */
-        .wish-heart { position: absolute; top: 10px; right: 10px; font-size: 20px; cursor: pointer; color: #ccc; z-index: 10; transition: 0.3s; background: rgba(255,255,255,0.7); width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        .wish-heart { position: absolute; top: 10px; right: 10px; font-size: 20px; cursor: pointer; color: #ccc; z-index: 10; background: rgba(255,255,255,0.8); width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
         .wish-heart.active { color: var(--primary); }
-
         .btn { width: 100%; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; margin-top: 8px; font-size: 13px; }
         .btn-add { background: var(--gold); color: white; }
         .btn-buy { background: var(--primary); color: white; }
         .btn-upi { background: #5f259f; color: white; }
         .btn-whatsapp { background: #25D366; color: white; }
-
         .drawer { position: fixed; right: -400px; top: 0; width: 320px; height: 100%; background: white; z-index: 2000; transition: 0.4s; padding: 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); overflow-y: auto; }
         .drawer.open { right: 0; }
         .drawer-item { display: flex; gap: 10px; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 12px; }
-
         .address-form { display: none; margin-top: 15px; padding: 10px; border: 1px dashed var(--primary); border-radius: 8px; }
         .address-form input { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
         .order-card { background: #fefefe; border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid var(--primary); }
-
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } .drawer { width: 85%; } }
     </style>
 </head>
@@ -68,18 +52,9 @@
     <div class="nav-container">
         <a href="#" class="logo">The Hitanshi Hub</a>
         <div class="nav-icons">
-            <div class="icon-btn" onclick="toggleDrawer('wishlistDrawer')">
-                <i class="far fa-heart"></i>
-                <span class="badge" id="wish-count">0</span>
-            </div>
-            <div class="icon-btn" onclick="toggleDrawer('orderBookDrawer')">
-                <i class="fas fa-book"></i>
-                <span class="badge" id="order-count">0</span>
-            </div>
-            <div class="icon-btn" onclick="toggleDrawer('cartDrawer')">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="badge" id="cart-count">0</span>
-            </div>
+            <div class="icon-btn" onclick="toggleDrawer('wishlistDrawer')"><i class="far fa-heart"></i><span class="badge" id="wish-count">0</span></div>
+            <div class="icon-btn" onclick="toggleDrawer('orderBookDrawer')"><i class="fas fa-book"></i><span class="badge" id="order-count">0</span></div>
+            <div class="icon-btn" onclick="toggleDrawer('cartDrawer')"><i class="fas fa-shopping-cart"></i><span class="badge" id="cart-count">0</span></div>
         </div>
     </div>
 </header>
@@ -96,15 +71,9 @@
     <div class="cat-item" onclick="filterCat('Bangles', this)">Bangles</div>
 </div>
 
-<div class="main-container">
-    <div class="grid" id="productGrid"></div>
-</div>
+<div class="main-container"><div class="grid" id="productGrid"></div></div>
 
-<div class="drawer" id="wishlistDrawer">
-    <h3>❤️ My Wishlist</h3><hr>
-    <div id="wishItems"></div>
-    <button class="btn btn-buy" onclick="toggleDrawer('wishlistDrawer')" style="background:#333;">Close</button>
-</div>
+<div class="drawer" id="wishlistDrawer"><h3>❤️ Wishlist</h3><hr><div id="wishItems"></div><button class="btn btn-buy" onclick="toggleDrawer('wishlistDrawer')" style="background:#333;">Close</button></div>
 
 <div class="drawer" id="cartDrawer">
     <h3>🛒 Shopping Cart</h3><hr>
@@ -121,11 +90,7 @@
     <button id="checkoutBtn" class="btn btn-buy" onclick="showAddress()">Proceed to Checkout</button>
 </div>
 
-<div class="drawer" id="orderBookDrawer">
-    <h3>📖 My Order Book</h3><hr>
-    <div id="orderItemsList">No orders yet.</div>
-    <button class="btn btn-buy" onclick="toggleDrawer('orderBookDrawer')" style="background:#333;">Close</button>
-</div>
+<div class="drawer" id="orderBookDrawer"><h3>📖 Order Book</h3><hr><div id="orderItemsList">No orders yet.</div><button class="btn btn-buy" onclick="toggleDrawer('orderBookDrawer')" style="background:#333;">Close</button></div>
 
 <script>
     const products = [
@@ -139,49 +104,30 @@
     let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
 
     function render(data = products) {
-        const grid = document.getElementById('productGrid');
-        grid.innerHTML = data.map(p => `
+        document.getElementById('productGrid').innerHTML = data.map(p => `
             <div class="p-card">
-                <i class="fas fa-heart wish-heart ${wishlist.includes(p.id) ? 'active' : ''}" onclick="toggleWishlist(${p.id}, this)"></i>
-                <img src="${p.img}" class="p-img" loading="lazy">
+                <i class="fas fa-heart wish-heart ${wishlist.includes(p.id)?'active':''}" onclick="toggleWishlist(${p.id}, this)"></i>
+                <img src="${p.img}" class="p-img">
                 <div class="p-info">
-                    <strong>${p.name}</strong>
-                    <div style="color:var(--primary); font-weight:bold; margin:5px 0;">₹${p.price}</div>
-                    ${p.hasSize ? `<select id="sz-${p.id}" style="padding:4px; margin-bottom:8px; border-radius:4px;"><option>2.4</option><option>2.6</option><option>2.8</option></select>` : '<div style="height:32px"></div>'}
+                    <strong>${p.name}</strong><div style="color:var(--primary); font-weight:bold; margin:5px 0;">₹${p.price}</div>
+                    ${p.hasSize ? `<select id="sz-${p.id}" style="padding:4px; margin-bottom:8px;"><option>2.4</option><option>2.6</option><option>2.8</option></select>` : '<div style="height:32px"></div>'}
                     <button class="btn btn-add" onclick="addToCart(${p.id})">ADD TO CART</button>
                 </div>
             </div>
         `).join('');
     }
 
-    // Wishlist Functionality
     function toggleWishlist(id, el) {
-        if (wishlist.includes(id)) {
-            wishlist = wishlist.filter(item => item !== id);
-            el.classList.remove('active');
-        } else {
-            wishlist.push(id);
-            el.classList.add('active');
-        }
+        wishlist.includes(id) ? wishlist = wishlist.filter(i => i !== id) : wishlist.push(id);
+        el.classList.toggle('active');
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
         updateWishlistUI();
     }
 
     function updateWishlistUI() {
         document.getElementById('wish-count').innerText = wishlist.length;
-        const container = document.getElementById('wishItems');
         const wishProducts = products.filter(p => wishlist.includes(p.id));
-        if (wishProducts.length === 0) {
-            container.innerHTML = "Wishlist khali hai.";
-            return;
-        }
-        container.innerHTML = wishProducts.map(i => `
-            <div class="drawer-item">
-                <img src="${i.img}" width="40" height="40" style="border-radius:4px;">
-                <div style="flex:1;"><b>${i.name}</b><br>₹${i.price}</div>
-                <i class="fas fa-trash" style="color:red; cursor:pointer;" onclick="toggleWishlist(${i.id}, document.querySelector('.wish-heart'))"></i>
-            </div>
-        `).join('');
+        document.getElementById('wishItems').innerHTML = wishProducts.length ? wishProducts.map(i => `<div class="drawer-item"><img src="${i.img}" width="40"> <b>${i.name}</b></div>`).join('') : "Wishlist khali hai.";
     }
 
     function addToCart(id) {
@@ -190,93 +136,58 @@
         p.tempId = Date.now();
         cart.push(p);
         updateCart();
-        alert("Item Cart mein joda gaya!");
     }
 
     function updateCart() {
         document.getElementById('cart-count').innerText = cart.length;
-        document.getElementById('cartItems').innerHTML = cart.map(i => `
-            <div class="drawer-item">
-                <img src="${i.img}" width="40" height="40" style="border-radius:4px;">
-                <div style="flex:1;"><b>${i.name}</b><br>₹${i.price} ${i.size ? '| Size: '+i.size : ''}</div>
-                <i class="fas fa-trash" style="color:red; cursor:pointer;" onclick="removeCart(${i.tempId})"></i>
-            </div>
-        `).join('');
-        const total = cart.reduce((s,i) => s + i.price, 0);
-        document.getElementById('cartTotal').innerText = `Total: ₹${total}`;
+        document.getElementById('cartItems').innerHTML = cart.map(i => `<div class="drawer-item"><b>${i.name}</b> (₹${i.price}) <i class="fas fa-trash" style="color:red; margin-left:auto;" onclick="removeCart(${i.tempId})"></i></div>`).join('');
+        document.getElementById('cartTotal').innerText = `Total: ₹${cart.reduce((s,i) => s + i.price, 0)}`;
     }
 
-    function removeCart(tempId) {
-        cart = cart.filter(i => i.tempId !== tempId);
-        updateCart();
-    }
-
-    function toggleDrawer(id) { 
-        document.getElementById(id).classList.toggle('open'); 
-        if(id === 'orderBookDrawer') updateOrderBookUI();
-        if(id === 'wishlistDrawer') updateWishlistUI();
-    }
-
-    function showAddress() { 
-        if(cart.length === 0) return alert("Cart khali hai!");
-        document.getElementById('addressSection').style.display = 'block';
-        document.getElementById('checkoutBtn').style.display = 'none';
-    }
-
-    function filterCat(cat, el) {
-        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        render(cat === 'All' ? products : products.filter(p => p.cat === cat));
-    }
+    function removeCart(tempId) { cart = cart.filter(i => i.tempId !== tempId); updateCart(); }
+    function toggleDrawer(id) { document.getElementById(id).classList.toggle('open'); if(id==='orderBookDrawer') updateOrderBookUI(); if(id==='wishlistDrawer') updateWishlistUI(); }
+    function showAddress() { document.getElementById('addressSection').style.display = 'block'; document.getElementById('checkoutBtn').style.display = 'none'; }
+    function filterCat(cat, el) { document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active')); el.classList.add('active'); render(cat === 'All' ? products : products.filter(p => p.cat === cat)); }
 
     function updateOrderBookUI() {
-        const list = document.getElementById('orderItemsList');
         document.getElementById('order-count').innerText = orderHistory.length;
-        if(orderHistory.length === 0) { list.innerHTML = "No orders yet."; return; }
-        list.innerHTML = orderHistory.slice().reverse().map(o => `
-            <div class="order-card">
-                <small>ID: ${o.id}</small><br>
-                <b>${o.items}</b><br>
-                <span style="color:var(--primary);">Total: ₹${o.total}</span><br>
-                <small>${o.date} | Status: ${o.status}</small>
-            </div>
-        `).join('');
+        document.getElementById('orderItemsList').innerHTML = orderHistory.length ? orderHistory.slice().reverse().map(o => `<div class="order-card"><small>${o.id}</small><br><b>${o.items}</b><br>Total: ₹${o.total}</div>`).join('') : "No orders yet.";
     }
 
     function processOrder(method) {
-        const name = document.getElementById('uName').value.trim();
-        const phone = document.getElementById('uPhone').value.trim();
-        const addr = document.getElementById('uAddr').value.trim();
-        if(!name || !phone || !addr) return alert("Kripya details bharein!");
+        const name = document.getElementById('uName').value;
+        const phone = document.getElementById('uPhone').value;
+        const addr = document.getElementById('uAddr').value;
+        if(!name || !phone || !addr) return alert("Details bharein!");
 
         const total = cart.reduce((s,i) => s + i.price, 0);
         const details = cart.map(i => `${i.name}${i.size?' ('+i.size+')':''}`).join(', ');
         const orderId = 'THH' + Math.floor(1000 + Math.random() * 9000);
-        const date = new Date().toLocaleDateString();
-
-        const order = { id: orderId, items: details, total, date, status: 'Processing' };
-        orderHistory.push(order);
+        
+        orderHistory.push({ id: orderId, items: details, total, date: new Date().toLocaleDateString(), status: 'Processing' });
         localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
 
-        const msg = `*🛍️ NAYA ORDER - THE HITANSHI HUB*\n------------------------------\n*Order ID:* ${orderId}\n*Customer:* ${name}\n*Phone:* ${phone}\n*Address:* ${addr}\n------------------------------\n*Items:* ${details}\n*Total Amount:* ₹${total}\n------------------------------\n_Kripya payment screenshot yahan bhejein._`;
+        const msg = `*🛍️ NAYA ORDER*\nOrder ID: ${orderId}\nCustomer: ${name}\nItems: ${details}\nTotal: ₹${total}\nAddress: ${addr}`;
 
         if(method === 'WA') {
-            window.location.href = `https://api.whatsapp.com/send?phone=919303560362&text=${encodeURIComponent(msg)}`;
+            window.open(`https://wa.me/919303560362?text=${encodeURIComponent(msg)}`, '_blank');
         } else {
             const upiUrl = `upi://pay?pa=9303560362@ybl&pn=TheHitanshiHub&am=${total}&cu=INR`;
             const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
-            const qrWindow = window.open("", "Payment", "width=350,height=500");
-            qrWindow.document.write(`<div style="text-align:center; font-family:sans-serif; padding:20px;"><h3>The Hitanshi Hub</h3><p>Amount: ₹${total}</p><img src="${qrUrl}" style="margin:10px 0; border:1px solid #eee; padding:10px;"><p style="font-size:12px;">QR Scan karein ya UPI button dabayein</p><button onclick="window.location.href='${upiUrl}'" style="padding:12px; background:#ff1493; color:white; border:none; border-radius:5px; width:100%; font-weight:bold;">Pay Now</button></div>`);
-            window.location.href = upiUrl;
+            const qrWindow = window.open("", "_self");
+            qrWindow.document.write(`
+                <div style="text-align:center; padding:50px; font-family:sans-serif;">
+                    <h3>The Hitanshi Hub</h3><p>Amount: ₹${total}</p>
+                    <img src="${qrUrl}"><br><br>
+                    <button onclick="window.location.href='index.html'" style="padding:15px; background:#ff1493; color:white; border:none; border-radius:5px; width:200px;">Back to Homepage</button>
+                </div>
+            `);
         }
-        cart = []; updateCart(); updateOrderBookUI();
-        document.getElementById('addressSection').style.display = 'none';
-        document.getElementById('checkoutBtn').style.display = 'block';
+        cart = []; updateCart(); toggleDrawer('cartDrawer');
     }
 
     render();
     updateOrderBookUI();
-    updateWishlistUI();
 </script>
 </body>
 </html>
