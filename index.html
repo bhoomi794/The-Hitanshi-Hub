@@ -10,7 +10,6 @@
         :root { --primary: #ff1493; --gold: #daa520; --dark: #1e1e2f; --light-pink: #fff0f5; --white: #ffffff; --gray: #777; }
         body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--light-pink); color: var(--dark); overflow-x: hidden; }
         
-        /* Header & Navigation */
         header { background: var(--white); padding: 10px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; }
         .logo { font-family: 'Dancing Script', cursive; font-size: 1.8em; color: var(--primary); text-decoration: none; font-weight: bold; }
@@ -18,19 +17,19 @@
         .icon-btn { position: relative; cursor: pointer; padding: 5px; }
         .badge { position: absolute; top: -5px; right: -5px; background: var(--dark); color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%; }
 
-        /* Hero & Search (Point 9) */
+        /* Hero & Search */
         .hero { text-align: center; padding: 15px; background: var(--white); border-bottom: 2px solid var(--primary); }
         .tagline { color: var(--gold); font-weight: 600; margin: 0; font-size: 0.9em; letter-spacing: 1px; }
         .search-container { max-width: 500px; margin: 10px auto 0; position: relative; padding: 0 15px; }
         .search-container input { width: 100%; padding: 10px 40px 10px 15px; border-radius: 25px; border: 1px solid #ddd; outline: none; box-sizing: border-box; }
         .search-container i { position: absolute; right: 30px; top: 10px; color: var(--primary); }
 
-        /* Categories (Restored) */
+        /* Categories Bar */
         .cat-bar { background: var(--white); display: flex; overflow-x: auto; padding: 10px; gap: 10px; justify-content: center; border-bottom: 1px solid #eee; scrollbar-width: none; }
         .cat-item { cursor: pointer; font-size: 12px; font-weight: 600; padding: 6px 15px; border-radius: 20px; border: 1px solid var(--primary); color: var(--primary); white-space: nowrap; }
         .cat-item.active { background: var(--primary); color: white; }
 
-        /* Product Grid & Offers (Point 11) */
+        /* Product Grid */
         .main-container { max-width: 1200px; margin: 10px auto; padding: 0 10px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
         .p-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #eee; position: relative; transition: 0.3s; display: flex; flex-direction: column; }
@@ -40,34 +39,30 @@
         .old-price { text-decoration: line-through; color: var(--gray); font-size: 0.9em; margin-right: 5px; }
         .rating { color: #ffc107; font-size: 0.8em; margin-bottom: 5px; }
 
-        /* Buttons & Back Buttons (Point 3, 5, 6) */
-        .btn { width: 100%; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; margin-top: 5px; font-size: 11px; }
-        .btn-detail { background: #f0f0f0; color: #333; }
-        .btn-add { background: var(--gold); color: white; }
-        .btn-back { background: var(--dark); color: white; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-
-        /* Drawer System & Wishlist Details (Point 1, 2) */
+        /* Drawer & Buttons */
         .drawer { position: fixed; right: -100%; top: 0; width: 320px; height: 100%; background: white; z-index: 2000; transition: 0.4s; padding: 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); overflow-y: auto; }
         .drawer.open { right: 0; }
-        .drawer-item { display: flex; gap: 10px; border-bottom: 1px solid #eee; padding: 10px 0; align-items: center; }
-        .trash-icon { color: #ff4d4d; cursor: pointer; margin-left: auto; }
-        
-        /* Address Section (Restored) */
-        .address-form { display: none; margin-top: 15px; background: #fffafb; padding: 10px; border-radius: 10px; border: 1px dashed var(--primary); }
-        .address-form input, .address-form textarea { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-family: inherit; }
+        .btn { width: 100%; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; margin-top: 5px; font-size: 11px; }
+        .btn-back { background: var(--dark); color: white; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        /* Floating WhatsApp (Professional Icon & Message) */
+        /* Payment QR Screen */
+        #paymentOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box; }
+        
         .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; z-index: 3000; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); animation: pulse 2s infinite; }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
-
-        footer { text-align: center; padding: 20px; color: var(--gold); font-weight: bold; background: white; border-top: 1px solid #eee; font-size: 0.8em; }
-
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } .drawer { width: 85%; } }
     </style>
 </head>
 <body>
 
-<a href="https://wa.me/919303560362?text=नमस्ते The Hitanshi Hub! मुझे आपके कलेक्शन के बारे में जानकारी चाहिए।" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div id="paymentOverlay">
+    <h2 style="color:var(--primary); font-family:'Dancing Script';">The Hitanshi Hub</h2>
+    <p>Aapke Order ka Total: <b id="payAmountText">₹0</b></p>
+    <div id="qrPlaceholder"></div>
+    <p style="font-size: 12px; color: #555; margin-top: 15px;">Scan karke payment karein aur Screenshot WhatsApp par bhejien.</p>
+    <button class="btn btn-back" onclick="closePayment()" style="width: 200px;">← Back to Home</button>
+</div>
+
+<a href="https://wa.me/919303560362?text=नमस्ते The Hitanshi Hub! मुझे सहायता चाहिए।" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <header>
     <div class="nav-container">
@@ -95,49 +90,44 @@
     <div class="cat-item" onclick="filterCat('Jewellery', this)">Jewellery</div>
 </div>
 
-<div class="main-container">
-    <div class="grid" id="productGrid"></div>
-</div>
+<div class="main-container"><div class="grid" id="productGrid"></div></div>
 
 <div class="drawer" id="wishlistDrawer">
-    <button class="btn btn-back" onclick="toggleDrawer('wishlistDrawer')"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+    <button class="btn btn-back" onclick="toggleDrawer('wishlistDrawer')">← Back to Shopping</button>
     <h3>❤️ My Wishlist</h3><hr>
     <div id="wishItems"></div>
 </div>
 
 <div class="drawer" id="cartDrawer">
-    <button class="btn btn-back" onclick="toggleDrawer('cartDrawer')"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+    <button class="btn btn-back" onclick="toggleDrawer('cartDrawer')">← Back to Shop</button>
     <h3>🛒 My Cart</h3><hr>
     <div id="cartItems"></div>
     <h4 id="cartTotal">Total: ₹0</h4>
-    <div id="addressSection" class="address-form">
-        <input type="text" id="uName" placeholder="Aapka Naam">
-        <input type="text" id="uPhone" placeholder="Mobile Number">
-        <textarea id="uAddr" placeholder="Pura Pata (Address)"></textarea>
-        <button class="btn" style="background:#5f259f; color:white;" onclick="processOrder('UPI')">Pay Online (UPI)</button>
-        <button class="btn" style="background:var(--gold); color:white;" onclick="processOrder('COD')">Cash on Delivery (COD)</button>
+    <div id="addressSection" style="display:none; padding:10px; border:1px dashed var(--primary); border-radius:10px;">
+        <input type="text" id="uName" placeholder="Naam" style="width:100%; margin-bottom:8px; padding:8px;">
+        <input type="text" id="uPhone" placeholder="Mobile" style="width:100%; margin-bottom:8px; padding:8px;">
+        <textarea id="uAddr" placeholder="Pata" style="width:100%; margin-bottom:8px; padding:8px;"></textarea>
+        <button class="btn" style="background:#5f259f; color:white;" onclick="processOrder('UPI')">Pay Online (Show QR)</button>
+        <button class="btn" style="background:var(--gold); color:white;" onclick="processOrder('COD')">Cash on Delivery</button>
         <button class="btn" style="background:#25D366; color:white;" onclick="processOrder('WA')">Order on WhatsApp</button>
     </div>
-    <button id="checkoutBtn" class="btn btn-buy" style="background:var(--primary); color:white;" onclick="showAddress()">Proceed to Checkout</button>
+    <button id="checkoutBtn" class="btn" style="background:var(--primary); color:white;" onclick="showAddress()">Proceed to Checkout</button>
 </div>
 
 <div class="drawer" id="orderBookDrawer">
-    <button class="btn btn-back" onclick="toggleDrawer('orderBookDrawer')"><i class="fas fa-arrow-left"></i> Back</button>
+    <button class="btn btn-back" onclick="toggleDrawer('orderBookDrawer')">← Back</button>
     <h3>📖 My Order Book</h3><hr>
     <div id="orderItemsList"></div>
 </div>
 
 <div class="drawer" id="detailDrawer">
-    <button class="btn btn-back" onclick="toggleDrawer('detailDrawer')"><i class="fas fa-arrow-left"></i> Back to List</button>
+    <button class="btn btn-back" onclick="toggleDrawer('detailDrawer')">← Back to List</button>
     <div id="detailContent"></div>
 </div>
-
-<footer>— The Hitanshi Hub —</footer>
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx4D-WBR-HlpmEtI0QSgzIJphKPz6ak-ofyPnvTvcxAugHDrTbZLJcUCB-gvpSWCmZR/exec';
 
-    // Easy Admin Section (Point 8) - Yahan se product badlein
     const products = [
         { id: 1, name: 'Silk Designer Saree', price: 1899, oldPrice: 2499, cat: 'Saree', img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500', material: 'Pure Silk', color: 'Red & Gold', rating: 4.5 },
         { id: 2, name: 'Bridal Bangles Set', price: 599, oldPrice: 899, cat: 'Bangles', img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500', material: 'Glass/Stone', color: 'Maroon', rating: 4.8 },
@@ -153,7 +143,7 @@
             <div class="p-card" id="prod-${p.id}">
                 <img src="${p.img}" class="p-img" onclick="showDetails(${p.id})">
                 <div class="p-info">
-                    <div class="rating"><i class="fas fa-star"></i> ${p.rating} | ⭐⭐⭐⭐⭐</div>
+                    <div class="rating"><i class="fas fa-star"></i> ${p.rating} | (10+ Reviews)</div>
                     <strong>${p.name}</strong><br>
                     <span class="old-price">₹${p.oldPrice}</span> <span class="price-tag">₹${p.price}</span>
                     <button class="btn btn-detail" onclick="showDetails(${p.id})">More Detail</button>
@@ -167,13 +157,6 @@
     }
 
     function toggleDrawer(id) { document.getElementById(id).classList.toggle('open'); }
-
-    function filterCat(cat, el) {
-        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        render(cat === 'All' ? products : products.filter(p => p.cat === cat));
-    }
-
     function searchProducts() {
         const term = document.getElementById('searchInput').value.toLowerCase();
         render(products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term)));
@@ -183,19 +166,16 @@
         const p = products.find(x => x.id === id);
         document.getElementById('detailContent').innerHTML = `
             <img src="${p.img}" style="width:100%; border-radius:10px;">
-            <h2>${p.name}</h2>
-            <p><b>Material:</b> ${p.material}</p>
-            <p><b>Color:</b> ${p.color}</p>
+            <h3>${p.name}</h3>
+            <p><b>Material:</b> ${p.material} | <b>Color:</b> ${p.color}</p>
             <p><b>Price:</b> ₹${p.price} <span style="text-decoration:line-through; color:gray;">₹${p.oldPrice}</span></p>
-            <p><b>Rating:</b> ⭐ ${p.rating} / 5</p>
             <button class="btn btn-add" onclick="addToCart(${p.id})">ADD TO CART</button>
         `;
         toggleDrawer('detailDrawer');
     }
 
     function toggleWish(id) {
-        if(wishlist.includes(id)) wishlist = wishlist.filter(x => x !== id);
-        else wishlist.push(id);
+        wishlist.includes(id) ? wishlist = wishlist.filter(x => x !== id) : wishlist.push(id);
         localStorage.setItem('thh_wishlist', JSON.stringify(wishlist));
         updateWishUI(); render();
     }
@@ -204,13 +184,11 @@
         document.getElementById('wish-count').innerText = wishlist.length;
         document.getElementById('wishItems').innerHTML = products.filter(p => wishlist.includes(p.id)).map(i => `
             <div class="drawer-item">
-                <img src="${i.img}" width="50" onclick="goToProduct(${i.id})" style="cursor:pointer; border-radius:5px;">
-                <div style="flex:1" onclick="goToProduct(${i.id})" style="cursor:pointer">
-                    <b>${i.name}</b><br>₹${i.price}
-                </div>
-                <i class="fas fa-trash-alt trash-icon" onclick="toggleWish(${i.id})"></i>
+                <img src="${i.img}" width="40" onclick="goToProduct(${i.id})" style="cursor:pointer">
+                <div style="flex:1"><b>${i.name}</b><br>₹${i.price}</div>
+                <i class="fas fa-trash-alt" style="color:red; cursor:pointer" onclick="toggleWish(${i.id})"></i>
             </div>
-        `).join('') || "Wishlist khali hai.";
+        `).join('') || "Khali hai.";
     }
 
     function goToProduct(id) {
@@ -225,12 +203,7 @@
 
     function updateCart() {
         document.getElementById('cart-count').innerText = cart.length;
-        document.getElementById('cartItems').innerHTML = cart.map(i => `
-            <div class="drawer-item">
-                <div style="flex:1"><b>${i.name}</b><br>₹${i.price}</div>
-                <i class="fas fa-trash-alt trash-icon" onclick="removeCart(${i.tempId})"></i>
-            </div>
-        `).join('') || "Cart khali hai.";
+        document.getElementById('cartItems').innerHTML = cart.map(i => `<div class="drawer-item"><div style="flex:1"><b>${i.name}</b><br>₹${i.price}</div><i class="fas fa-trash-alt" style="color:red; cursor:pointer" onclick="removeCart(${i.tempId})"></i></div>`).join('');
         document.getElementById('cartTotal').innerText = `Total: ₹${cart.reduce((s,i) => s + i.price, 0)}`;
     }
 
@@ -246,35 +219,41 @@
         const name = document.getElementById('uName').value;
         const phone = document.getElementById('uPhone').value;
         const addr = document.getElementById('uAddr').value;
-        if(!name || !phone || !addr) return alert("Kripya details bharein!");
+        if(!name || !phone || !addr) return alert("Details bharein!");
 
+        const total = cart.reduce((s,i) => s + i.price, 0);
         const orderId = 'THH' + Math.floor(1000 + Math.random() * 9000);
-        const orderData = { orderId, name, phone, address: addr, items: cart.map(i => i.name).join(','), total: cart.reduce((s,i) => s + i.price, 0), method };
+        const orderData = { orderId, name, phone, address: addr, items: cart.map(i => i.name).join(','), total, method };
 
         try { await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(orderData) }); } catch(e) {}
 
         orderHistory.push(orderData);
         localStorage.setItem('thh_orders', JSON.stringify(orderHistory));
-        
-        const msg = `*🛍️ NAYA ORDER (${method}) - THE HITANSHI HUB*\n------------------------------\n*Order ID:* ${orderId}\n*Customer:* ${name}\n*Items:* ${orderData.items}\n*Total:* ₹${orderData.total}\n------------------------------`;
-        window.open(`https://wa.me/919303560362?text=${encodeURIComponent(msg)}`, '_blank');
+
+        const msg = `*🛍️ NAYA ORDER (${method}) - THE HITANSHI HUB*\n------------------------------\n*Order ID:* ${orderId}\n*Customer:* ${name}\n*Items:* ${orderData.items}\n*Total:* ₹${total}`;
+
+        if(method === 'UPI') {
+            document.getElementById('payAmountText').innerText = '₹' + total;
+            const upiUrl = `upi://pay?pa=9303560362@ybl&pn=TheHitanshiHub&am=${total}&cu=INR`;
+            document.getElementById('qrPlaceholder').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}">`;
+            document.getElementById('paymentOverlay').style.display = 'flex';
+        } else {
+            window.open(`https://wa.me/919303560362?text=${encodeURIComponent(msg)}`, '_blank');
+        }
 
         cart = []; updateCart(); toggleDrawer('cartDrawer'); updateOrderBookUI();
-        document.getElementById('addressSection').style.display = 'none';
-        document.getElementById('checkoutBtn').style.display = 'block';
     }
 
+    function closePayment() { document.getElementById('paymentOverlay').style.display = 'none'; }
+    function filterCat(cat, el) { document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active')); el.classList.add('active'); render(cat === 'All' ? products : products.filter(p => p.cat === cat)); }
     function updateOrderBookUI() {
         document.getElementById('order-count').innerText = orderHistory.length;
-        document.getElementById('orderItemsList').innerHTML = orderHistory.slice().reverse().map(o => `
-            <div style="border:1px solid #eee; padding:10px; margin-bottom:10px; border-radius:8px; font-size:12px;">
-                <b>ID: ${o.orderId}</b><br>${o.items}<br>Total: ₹${o.total} (${o.method})
-            </div>
-        `).join('') || "No orders yet.";
+        document.getElementById('orderItemsList').innerHTML = orderHistory.slice().reverse().map(o => `<div style="border:1px solid #eee; padding:10px; margin-bottom:10px; border-radius:8px;"><b>ID: ${o.orderId}</b><br>${o.items}<br>Total: ₹${o.total} (${o.method})</div>`).join('') || "No orders.";
     }
 
     render(); updateWishUI(); updateOrderBookUI();
 </script>
 </body>
 </html>
+
 
